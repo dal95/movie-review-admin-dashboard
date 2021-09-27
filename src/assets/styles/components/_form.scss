@@ -1,0 +1,36 @@
+label {
+  display: block;
+  font-weight: bol;
+  width: 100%;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  height: rem(42);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 3%);
+  @include transition;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 4px rgba($color-primary, 0.05);
+  }
+
+  &::placeholder {
+    color: var(--color-text);
+    opacity: 0.6;
+  }
+}
+
+input[type='submit'] {
+  @extend .button;
+}
+
+.fields {
+  margin-bottom: 1.5rem;
+}

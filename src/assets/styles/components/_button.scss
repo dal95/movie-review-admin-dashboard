@@ -1,0 +1,36 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: rem(42);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 3%);
+  background-color: $color-primary;
+  color: #fff;
+  cursor: pointer;
+
+  @include transition;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 4px rgba($color-primary, 0.05);
+    background-color: lighten($color-primary, 3%);
+
+    svg {
+      opacity: 0.8;
+    }
+  }
+
+  .loading {
+    margin-right: 10px;
+  }
+
+  svg {
+    max-width: 20px;
+    margin-left: 10px;
+    @include transition;
+  }
+}

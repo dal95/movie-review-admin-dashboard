@@ -1,0 +1,13 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__form {
+    flex-basis: 400px;
+  }
+
+  h3 {
+    text-align: center;
+  }
+}

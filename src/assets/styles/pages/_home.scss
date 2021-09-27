@@ -1,0 +1,95 @@
+.home {
+  form {
+    position: relative;
+    max-width: 40%;
+    margin: auto;
+
+    &.is-loading {
+      button[type='submit'] {
+        max-width: 100%;
+        width: calc(100% - 4px);
+        background-image: linear-gradient(
+          30deg,
+          var(--color-primary),
+          #7970e9,
+          var(--color-primary),
+          #7970e9
+        );
+        background-size: 300% 100%;
+        animation: pulse 2s linear infinite;
+
+        svg {
+          display: none;
+        }
+      }
+
+      input::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+  input {
+    height: 48px;
+  }
+
+  .button[type='submit'] {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 200px;
+    height: 44px;
+    max-width: 200px;
+  }
+
+  > h3,
+  > p {
+    text-align: center;
+    max-width: 40%;
+    margin-inline: auto;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-inline: 1.5rem;
+
+  margin-top: 3rem;
+}
+
+.card {
+  position: relative;
+  flex-basis: calc(100% / 3 - (1.5rem / 3 * 2)) !important;
+  margin: 0 !important;
+  cursor: pointer;
+
+  h3 {
+    margin-top: 0;
+
+    @include transition;
+  }
+
+  img {
+    aspect-ratio: 0.7;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &:hover {
+    box-shadow: h3 {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

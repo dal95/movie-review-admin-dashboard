@@ -1,0 +1,130 @@
+html,
+body {
+  height: 100%;
+}
+
+.layout {
+  position: relative;
+
+  &.private {
+    display: flex;
+
+    & > * {
+      min-height: 100vh;
+    }
+
+    .main {
+      flex: 1;
+    }
+  }
+
+  &.public {
+    .main > * {
+      height: 100vh;
+    }
+  }
+}
+
+.top-nav {
+  height: rem(50);
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline: 1.5rem;
+  margin-bottom: 10vh;
+  font-weight: 500;
+
+  svg {
+    width: 20px;
+  }
+
+  &__profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+
+    &:hover {
+      .top-nav__dropdown {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+  }
+
+  &__dropdown {
+    opacity: 0;
+    overflow: hidden;
+    text-align: right;
+    transform: scaleY(0);
+    transform-origin: top center;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 7rem;
+    border-radius: var(--radius);
+    box-shadow: 0 5px 5px rgba(#000, 0.1);
+    @include transition;
+
+    &-item {
+      padding: 5px 1.5rem;
+      cursor: pointer;
+      @include transition;
+
+      &:hover {
+        background-color: lighten(#000, 95%);
+      }
+    }
+  }
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  // background-color: var(--color-primary);
+  // background: #1b183a;
+  background: #262837;
+  color: #fff;
+  flex-basis: 20vw;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 2rem;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      position: relative;
+      margin-block: 1rem;
+      font-weight: bold;
+      padding-left: 20px + 10px;
+      display: flex;
+      align-items: center;
+
+      &:before {
+        position: absolute;
+        left: 0;
+        content: '';
+        width: 10px;
+        height: 10px;
+        // background: var(--color-primary);
+        background-color: #797dff;
+        border-radius: 50px;
+      }
+    }
+  }
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  margin-right: 10px;
+  box-shadow: 0 0 0 2px #e7e7e7;
+}
