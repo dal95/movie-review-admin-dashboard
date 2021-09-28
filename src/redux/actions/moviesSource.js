@@ -1,4 +1,4 @@
-import API from '../../../services/api'
+import API from '../../services/api'
 
 export const GET_SOURCE = 'GET_SOURCE'
 export const GET_SOURCE_SUCCESS = 'GET_SOURCE_SUCCESS'

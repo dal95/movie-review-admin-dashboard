@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 
 import { getImage } from '../helpers/movieDB'
-import API from '../../services/api'
+import API from '../services/api'
 
 function MovieDetails () {
   const [details, setDetails] = useState(null)

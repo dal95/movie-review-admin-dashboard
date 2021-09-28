@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from '../src/helpers/auth'
+import { getToken } from '../helpers/auth'
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL
 
 const API = axios.create({

@@ -1,4 +1,4 @@
-import API from '../../../services/api'
+import API from '../../services/api'
 import history from '../../helpers/history'
 
 export const AUTH_USER = 'AUTH_USER'

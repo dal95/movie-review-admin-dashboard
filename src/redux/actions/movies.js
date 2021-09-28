@@ -1,4 +1,4 @@
-import API from '../../../services/api'
+import API from '../../services/api'
 
 export const GET_MOVIES = 'GET_MOVIES'
 export const GET_MOVIES_SUCCESS = 'GET_MOVIES_SUCCESS'
