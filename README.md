@@ -55,6 +55,12 @@ npm run dev
 
 For detailed script of dev, see package.json scripts
 
+## Test account
+
+To test the functionality you need to login using an admin account below:
+email: admin@gmail.com
+password: admin
+
 ## Authors
 
 - \*_Afdallah Wahyu Arafat_- [afdallah](https://gitlab.com/afdallah)
