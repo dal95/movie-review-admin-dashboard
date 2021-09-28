@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import { removeToken } from '../helpers/auth'
 import Sidebar from './Sidebar'
 
@@ -33,7 +34,9 @@ function Private ({ children, user }) {
               />
             </svg>
             <div className='top-nav__dropdown'>
-              <div className='top-nav__dropdown-item'>Settings</div>
+              <Link to='/profile' className='top-nav__dropdown-item'>
+                Settings
+              </Link>
               <div
                 className='top-nav__dropdown-item'
                 onClick={() => {
