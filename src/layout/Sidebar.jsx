@@ -16,9 +16,7 @@ function Sidebar () {
       </ul>
       Users
       <ul>
-        <li>All Movies</li>
-        <li>All casts</li>
-        <li>All Comments</li>
+        <li>All Users</li>
       </ul>
     </aside>
   )
