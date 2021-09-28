@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom'
+
 function Sidebar () {
   return (
     <aside className='sidebar'>
       Movies
       <ul>
-        <li>All Movies</li>
+        <li>
+          <Link to='/movies'>All Movies</Link>
+        </li>
         <li>All casts</li>
         <li>All Comments</li>
       </ul>

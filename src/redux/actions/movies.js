@@ -4,6 +4,11 @@ export const GET_MOVIES = 'GET_MOVIES'
 export const GET_MOVIES_SUCCESS = 'GET_MOVIES_SUCCESS'
 export const GET_MOVIES_FAILURE = 'GET_MOVIES_FAILURE'
 
+// add movie
+export const ADD_MOVIE = 'ADD_MOVIE'
+export const ADD_MOVIE_SUCCESS = 'ADD_MOVIE_SUCCESS'
+export const ADD_MOVIE_FAILURE = 'ADD_MOVIE_FAILURE'
+
 export const getMovies = () => ({
   type: GET_MOVIES
 })
@@ -24,6 +29,24 @@ export const getMoviesFailure = error => {
   }
 }
 
+export const addMovie = () => ({
+  type: ADD_MOVIE
+})
+
+export const addMovieSuccess = movie => {
+  return {
+    type: ADD_MOVIE_SUCCESS,
+    payload: movie
+  }
+}
+
+export const addMovieFailure = error => {
+  return {
+    type: ADD_MOVIE_FAILURE,
+    error
+  }
+}
+
 // Async actions
 export const fetchMovies = (params = {}) => {
   return async dispatch => {
@@ -35,6 +58,20 @@ export const fetchMovies = (params = {}) => {
       dispatch(getMoviesSuccess(res.data))
     } catch (error) {
       dispatch(getMoviesFailure(error))
+    }
+  }
+}
+
+export const postMovie = movie => {
+  return async dispatch => {
+    dispatch(addMovie())
+
+    try {
+      const res = await API.post('/movies', movie)
+
+      dispatch(addMovieSuccess(res.data))
+    } catch (error) {
+      dispatch(addMovieFailure(error))
     }
   }
 }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import ReactPlaceholder from 'react-placeholder'
 
 import Button from '../components/Button'
@@ -8,13 +9,29 @@ import useForm from '../hooks/useForm'
 
 import 'react-placeholder/lib/reactPlaceholder.css'
 import CardSkeleton from '../components/placeholders/CardSkeleton'
+import { postMovie } from '../redux/actions/movies'
 
 const source = {
   baseUrl: import.meta.env.VITE_APP_MOVIEDB_BASE_URL,
   apiKey: import.meta.env.VITE_APP_MOVIEDB_API_KEY
 }
 
+const genres = [
+  'Horror',
+  'Science Fiction',
+  'Action',
+  'Comedy',
+  'Romance',
+  'Thriller',
+  'Adventure',
+  'Documentary',
+  'Animation',
+  'Drama',
+  'War'
+]
+
 function Home () {
+  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false)
   const { values, handleChange } = useForm({ query: '' })
   const [data, setMovies] = useState(null)
@@ -39,6 +56,8 @@ function Home () {
       setIsLoading(false)
     }
   }
+
+  const addMovie = movie => dispatch(postMovie(movie))
 
   return (
     <div className='home'>
@@ -76,12 +95,32 @@ function Home () {
         </Button>
       </form>
 
-      {values.query && renderList(data, isLoading)}
+      {values.query && renderList(data, isLoading, addMovie, source)}
     </div>
   )
 }
 
-function renderList (data, isLoading) {
+function renderList (data, isLoading, addMovie, source) {
+  const handleAddMovie = async id => {
+    const movie = await axios.get(
+      `${source.baseUrl}/movie/${id}?api_key=${source.apiKey}&append_to_response=videos`
+    )
+    const credit = await axios.get(
+      `${source.baseUrl}/movie/${id}/credits?api_key=${source.apiKey}`
+    )
+
+    debugger
+    addMovie({
+      ...movie.data,
+      synopsis: movie.data.overview,
+      trailer: `https://www.youtube.com/watch?v=${movie.data?.videos?.results[0]?.key}`,
+      poster: movie.data?.poster_path,
+      genres: movie.data?.genres.map(genre => genre.name),
+      casts: [...credit?.data?.cast.slice(0, 15)],
+      crews: [...credit?.data?.crew.slice(0, 15)]
+    })
+  }
+
   if (isLoading)
     return (
       <div className='grid'>
@@ -106,10 +145,36 @@ function renderList (data, isLoading) {
     <div className='grid'>
       {data?.results.map(movie => (
         <div key={movie.id} className='card'>
-          <img
-            src={getPoster(movie.poster_path, 'w400')}
-            alt={`Poster of ${movie.title}`}
-          />
+          <div className='card__img'>
+            <div className='card__img-overlay'>
+              <div
+                className='card__cta'
+                onClick={() => handleAddMovie(movie.id)}
+              >
+                <div>Add this to database</div>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-5 w-5'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
+                >
+                  <path
+                    fillRule='evenodd'
+                    d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z'
+                    clipRule='evenodd'
+                  />
+                </svg>
+              </div>
+            </div>
+            <img
+              src={
+                movie.poster_path
+                  ? getPoster(movie.poster_path, 'w400')
+                  : 'http://unsplash.it/500'
+              }
+              alt={`Poster of ${movie.title}`}
+            />
+          </div>
           <h3>{movie.title}</h3>
         </div>
       ))}

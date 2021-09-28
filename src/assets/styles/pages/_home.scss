@@ -64,9 +64,12 @@
   flex-basis: calc(100% / 3 - (1.5rem / 3 * 2)) !important;
   margin: 0 !important;
   cursor: pointer;
+  @include transition;
 
   h3 {
+    position: relative;
     margin-top: 0;
+    transform-origin: top center;
 
     @include transition;
   }
@@ -77,10 +80,45 @@
     width: 100%;
   }
 
+  &__img {
+    position: relative;
+    overflow: hidden;
+    @include transition;
+  }
+
+  &__img-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#262837, 0.95);
+    @include transition;
+  }
+
   &:hover {
-    box-shadow: h3 {
-      position: absolute;
-      bottom: 0;
+    .card__img {
+      box-shadow: 0 20px 20px rgba(#000, 0.2);
+      transform: translateY(-10px);
+
+      &-overlay {
+        top: 0;
+      }
+    }
+  }
+
+  &__cta {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    svg {
+      width: 40px;
     }
   }
 }
