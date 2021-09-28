@@ -6,9 +6,7 @@ function MovieCard ({ movie, renderAction }) {
     <div key={movie.id} className='card'>
       <div className='card__img'>
         <div className='card__img-overlay'>
-          <div className='card__cta' onClick={() => handleAddMovie(movie.id)}>
-            {renderAction && renderAction()}
-          </div>
+          {renderAction && renderAction()}
         </div>
         <img
           src={

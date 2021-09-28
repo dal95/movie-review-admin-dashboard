@@ -110,6 +110,17 @@ function renderList (data, isLoading, addMovie, source) {
     })
   }
 
+  const customAction = movie => {
+    return (
+      <>
+        <div className='card__cta' onClick={() => handleAddMovie(movie.id)}>
+          <div>Add this to database</div>
+          <LibraryIcon />
+        </div>
+      </>
+    )
+  }
+
   if (isLoading)
     return (
       <div className='grid'>
@@ -129,19 +140,14 @@ function renderList (data, isLoading, addMovie, source) {
       </div>
     )
 
-  const customAction = () => {
-    return (
-      <>
-        <div>Add this to database</div>
-        <LibraryIcon />
-      </>
-    )
-  }
-
   return (
     <div className='grid'>
       {data?.results.map(movie => (
-        <MovieCard key={movie.id} movie={movie} renderAction={customAction} />
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          renderAction={() => customAction(movie)}
+        />
       ))}
     </div>
   )
