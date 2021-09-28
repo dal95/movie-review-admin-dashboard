@@ -3,6 +3,7 @@ import { fetchMovies } from '../redux/actions/movies'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getImage } from '../helpers/movieDB'
+import MovieCard from '../components/MovieCard'
 
 function Movies () {
   const dispatch = useDispatch()
@@ -14,19 +15,16 @@ function Movies () {
   }, [dispatch])
 
   console.log(data.isLoading)
-  if (data?.isLoading) return <h1>Loading...</h1>
+  if (data?.isLoading) return <div></div>
 
   return (
-    <div>
+    <div className='grid'>
       {data?.movies?.docs.map(movie => (
-        <div key={movie._id}>
-          <Link to={`/movies/details/${movie._id}`}>
-            <img src={getImage(movie.poster)} alt='' />
-            <h2>{movie.title}</h2>
-          </Link>
-          id:
-          <input type='text' defaultValue={movie._id} />
-        </div>
+        <MovieCard
+          key={movie._id}
+          movie={{ ...movie, poster_path: movie.poster }}
+          // renderAction={customAction}
+        />
       ))}
     </div>
   )

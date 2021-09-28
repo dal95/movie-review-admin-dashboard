@@ -10,6 +10,9 @@ import useForm from '../hooks/useForm'
 import 'react-placeholder/lib/reactPlaceholder.css'
 import CardSkeleton from '../components/placeholders/CardSkeleton'
 import { postMovie } from '../redux/actions/movies'
+import MovieCard from '../components/MovieCard'
+import LibraryIcon from '../assets/images/library.svg?component'
+import SearchIcon from '../assets/images/eyeglass.svg?component'
 
 const source = {
   baseUrl: import.meta.env.VITE_APP_MOVIEDB_BASE_URL,
@@ -78,20 +81,7 @@ function Home () {
         />
         <Button type='submit' isLoading={isLoading}>
           {isLoading ? 'Fetch your movies' : 'Search'}
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-            />
-          </svg>
+          <SearchIcon />
         </Button>
       </form>
 
@@ -126,12 +116,11 @@ function renderList (data, isLoading, addMovie, source) {
         {Array.from(Array(10)).map((x, i) => {
           return (
             <ReactPlaceholder
-              className='card'
+              className='card-placeholder'
               key={i}
               ready={!isLoading}
               showLoadingAnimation
               type='rect'
-              style={{ height: 700, width: '100%' }}
               color='#cacaca'
               // customPlaceholder={<CardSkeleton />}
             />
@@ -140,46 +129,19 @@ function renderList (data, isLoading, addMovie, source) {
       </div>
     )
 
+  const customAction = () => {
+    return (
+      <>
+        <div>Add this to database</div>
+        <LibraryIcon />
+      </>
+    )
+  }
+
   return (
     <div className='grid'>
       {data?.results.map(movie => (
-        <div key={movie.id} className='card'>
-          <div className='card__img'>
-            <div className='card__img-overlay'>
-              <div
-                className='card__cta'
-                onClick={() => handleAddMovie(movie.id)}
-              >
-                <div>Add this to database</div>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='h-5 w-5'
-                  viewBox='0 0 20 20'
-                  fill='currentColor'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z'
-                    clipRule='evenodd'
-                  />
-                </svg>
-              </div>
-            </div>
-            <img
-              src={
-                movie.poster_path
-                  ? getImage(movie.poster_path, 'w400')
-                  : 'http://unsplash.it/500'
-              }
-              alt={`Poster of ${movie.title}`}
-            />
-          </div>
-          <h3>{movie.title}</h3>
-
-          {/* {movie?.casts.map(cast => (
-            <div key={cast.id}>{cast.name}</div>
-          ))} */}
-        </div>
+        <MovieCard key={movie.id} movie={movie} renderAction={customAction} />
       ))}
     </div>
   )
