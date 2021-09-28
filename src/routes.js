@@ -2,6 +2,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import MovieDetails from './pages/MovieDetails'
 import Movies from './pages/Movies'
+import Profile from './pages/Profile'
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
   {
     path: '/movies/details/:id',
     component: MovieDetails
+  },
+  {
+    path: '/profile',
+    component: Profile
   }
 ]
 
