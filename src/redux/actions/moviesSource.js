@@ -1,0 +1,10 @@
+import API from '../../../services/api'
+
+export const GET_SOURCE = 'GET_SOURCE'
+export const GET_SOURCE_SUCCESS = 'GET_SOURCE_SUCCESS'
+export const GET_SOURCE_FAILURE = 'GET_SOURCE_FAILURE'
+
+// Genres
+export const GET_SOURCE_GENRES = 'GET_SOURCE_GENRES'
+export const GET_SOURCE_GENRES_SUCCESS = 'GET_SOURCE_GENRES_SUCCESS'
+export const GET_SOURCE_GENRES_FAILURE = 'GET_SOURCE_GENRES_FAILURE'

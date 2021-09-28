@@ -23,8 +23,6 @@ function Login () {
     )
   }
 
-  console.log(state.users.isLoading)
-
   return (
     <section className='login'>
       <form action='' className='login__form' onSubmit={handleSubmit}>

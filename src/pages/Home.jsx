@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import ReactPlaceholder from 'react-placeholder'
 
 import Button from '../components/Button'
-import { getPoster } from '../helpers/movieDB'
+import { getImage } from '../helpers/movieDB'
 import useForm from '../hooks/useForm'
 
 import 'react-placeholder/lib/reactPlaceholder.css'
@@ -109,7 +109,6 @@ function renderList (data, isLoading, addMovie, source) {
       `${source.baseUrl}/movie/${id}/credits?api_key=${source.apiKey}`
     )
 
-    debugger
     addMovie({
       ...movie.data,
       synopsis: movie.data.overview,
@@ -169,13 +168,17 @@ function renderList (data, isLoading, addMovie, source) {
             <img
               src={
                 movie.poster_path
-                  ? getPoster(movie.poster_path, 'w400')
+                  ? getImage(movie.poster_path, 'w400')
                   : 'http://unsplash.it/500'
               }
               alt={`Poster of ${movie.title}`}
             />
           </div>
           <h3>{movie.title}</h3>
+
+          {/* {movie?.casts.map(cast => (
+            <div key={cast.id}>{cast.name}</div>
+          ))} */}
         </div>
       ))}
     </div>

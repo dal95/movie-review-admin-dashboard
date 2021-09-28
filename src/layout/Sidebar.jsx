@@ -6,6 +6,9 @@ function Sidebar () {
       Movies
       <ul>
         <li>
+          <Link to='/'>Home</Link>
+        </li>
+        <li>
           <Link to='/movies'>All Movies</Link>
         </li>
         <li>All casts</li>
