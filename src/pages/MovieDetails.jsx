@@ -12,8 +12,6 @@ function MovieDetails () {
     API.get(`/movies/${id}`).then(res => setDetails(res.data))
   }, [])
 
-  console.table(id)
-
   if (!details) return <h3>Loading...</h3>
 
   return (

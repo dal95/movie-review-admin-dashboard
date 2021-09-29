@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import ReactPlaceholder from 'react-placeholder'
 
 import Button from '../components/Button'
@@ -35,6 +35,7 @@ const genres = [
 
 function Home () {
   const dispatch = useDispatch()
+  const { movies } = useSelector(state => state)
   const [isLoading, setIsLoading] = useState(false)
   const { values, handleChange } = useForm({ query: '' })
   const [data, setMovies] = useState(null)
@@ -60,7 +61,10 @@ function Home () {
     }
   }
 
-  const addMovie = movie => dispatch(postMovie(movie))
+  const addMovie = async movie => {
+    await dispatch(postMovie(movie))
+    alert('Successfully added')
+  }
 
   return (
     <div className='home'>

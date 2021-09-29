@@ -21,8 +21,6 @@ export const getMoviesSuccess = movies => {
 }
 
 export const getMoviesFailure = error => {
-  console.log(error)
-
   return {
     type: GET_MOVIES_FAILURE,
     error
@@ -70,6 +68,7 @@ export const postMovie = movie => {
       const res = await API.post('/movies', movie)
 
       dispatch(addMovieSuccess(res.data))
+      return Promise.resolve(res.data)
     } catch (error) {
       dispatch(addMovieFailure(error))
     }

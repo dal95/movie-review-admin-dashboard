@@ -28,7 +28,7 @@ function Login () {
     <section className='login'>
       <form action='' className='login__form' onSubmit={handleSubmit}>
         <h3>Login to your account</h3>
-        <h4>Test account - email: admin@gmail.com, password: admin</h4>
+        <p>Test account - email: admin@gmail.com, password: admin</p>
         <div className='fields'>
           <label htmlFor=''>Email</label>
           <input

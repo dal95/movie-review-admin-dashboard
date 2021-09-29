@@ -1,7 +1,6 @@
 import { getImage } from '../helpers/movieDB'
 
 function MovieCard ({ movie, renderAction }) {
-  console.log(movie.poster)
   return (
     <div key={movie.id} className='card'>
       <div className='card__img'>
