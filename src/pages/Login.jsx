@@ -1,8 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
+
 import useForm from '../hooks/useForm'
 import Button from '../components/Button'
 import { authRequest } from '../redux/actions/users'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
 
 function Login () {
   const state = useSelector(state => state)
@@ -27,6 +28,7 @@ function Login () {
     <section className='login'>
       <form action='' className='login__form' onSubmit={handleSubmit}>
         <h3>Login to your account</h3>
+        <h4>Test account - email: admin@gmail.com, password: admin</h4>
         <div className='fields'>
           <label htmlFor=''>Email</label>
           <input
