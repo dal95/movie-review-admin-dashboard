@@ -1,6 +1,6 @@
 # Movie review admin app
-
-Is an admin interface built with react js and using the data based on the API that we created https://notflixtv.herokuapp.com.
+This repo is a teaching materials for Glints Academy Office hour.
+Built with react js and using the data based on the API that we created https://notflixtv.herokuapp.com.
 
 ## Getting Started
 
